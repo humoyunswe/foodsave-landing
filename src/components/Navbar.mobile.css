@@ -1,0 +1,135 @@
+@layer mobile {
+  @media (max-width: 768px) {
+    .navbar-mobile {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      transition: all 0.3s ease-in-out;
+      background: linear-gradient(to bottom, #005251, #006260);
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar-scrolled {
+      background: white !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      position: relative;
+      height: 60px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+      z-index: 60;
+    }
+
+    .logo.scrolled {
+      color: #005251;
+    }
+
+    .menu-button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 60;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-button.scrolled {
+      color: #005251;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 60px; /* Height of navbar */
+      right: -100%;
+      width: 100%;
+      max-width: 320px;
+      height: calc(100vh - 60px);
+      background: white;
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease-in-out;
+      z-index: 55;
+      padding: 1.5rem;
+      overflow-y: auto;
+      margin: 0;
+    }
+
+    .mobile-menu.open {
+      right: 0;
+    }
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .mobile-nav a {
+      padding: 0.75rem 0;
+      font-size: 1.1rem;
+      color: #1a1a1a;
+      text-decoration: none;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .mobile-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .mobile-buttons .btn {
+      width: 100%;
+      text-align: center;
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-weight: 500;
+    }
+
+    .mobile-buttons .btn-primary {
+      background: #005251;
+      color: white;
+    }
+
+    .mobile-buttons .btn-secondary {
+      background: #f0f0f0;
+      color: #005251;
+    }
+
+    .backdrop {
+      position: fixed;
+      top: 60px; /* Height of navbar */
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 45;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .backdrop.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}

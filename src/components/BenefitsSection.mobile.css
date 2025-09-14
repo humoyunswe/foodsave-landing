@@ -1,0 +1,154 @@
+@layer mobile {
+  /* Mobile & Tablet Overrides */
+  @media (max-width: 1024px) {
+    .benefits-section {
+      padding: 2rem 0 !important;
+    }
+
+    .benefits-grid {
+      grid-template-columns: 1fr !important;
+      gap: 3rem !important;
+      padding: 0 1rem !important;
+    }
+
+    .benefits-left,
+    .benefits-right {
+      text-align: center !important;
+    }
+
+    .benefit-item {
+      max-width: 100% !important;
+      margin: 0 auto 3rem !important;
+      padding: 0 0.5rem !important;
+    }
+
+    .benefit-icon {
+      margin: 0 auto 1.25rem !important;
+      width: 4.5rem !important;
+      height: 4.5rem !important;
+    }
+
+    .benefit-icon svg {
+      width: 2.25rem !important;
+      height: 2.25rem !important;
+    }
+
+    .benefit-title {
+      font-size: clamp(1.25rem, 5vw, 1.5rem) !important;
+      line-height: 1.3 !important;
+      margin: 0 auto 1rem !important;
+      max-width: 28rem !important;
+      font-weight: 700 !important;
+    }
+
+    .benefit-description {
+      font-size: 1rem !important;
+      line-height: 1.5 !important;
+      max-width: 85% !important;
+      margin: 0 auto !important;
+      color: var(--muted-foreground) !important;
+    }
+
+    .food-items-scroll {
+      position: relative;
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      background: #005251 !important;
+      padding: 1rem 0 !important;
+      margin-top: 1.5rem !important;
+      overflow: hidden !important;
+      white-space: nowrap !important;
+    }
+
+    .food-items-scroll .animate-scroll {
+      display: inline-block;
+      padding-right: 100%;
+      white-space: nowrap;
+      animation: scroll 30s linear infinite;
+      will-change: transform;
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Pause animation on hover/focus for better UX */
+    .food-items-scroll:hover .animate-scroll,
+    .food-items-scroll:focus .animate-scroll {
+      animation-play-state: paused;
+    }
+  }
+
+  /* Tablet-specific overrides */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .benefits-grid {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 2.5rem !important;
+      max-width: 64rem !important;
+      margin: 0 auto !important;
+    }
+
+    .benefit-item {
+      max-width: 90% !important;
+      margin-bottom: 3.5rem !important;
+    }
+  }
+
+  /* Mobile-specific overrides */
+  @media (max-width: 480px) {
+    .benefits-section {
+      padding: 1.5rem 0 !important;
+    }
+
+    .benefits-grid {
+      gap: 2.5rem !important;
+    }
+
+    .benefit-item {
+      margin-bottom: 2.5rem !important;
+      padding: 0 0.25rem !important;
+    }
+
+    .benefit-title {
+      font-size: clamp(1.1rem, 5.2vw, 1.4rem) !important;
+      line-height: 1.35 !important;
+      max-width: 26rem !important;
+    }
+
+    .benefit-description {
+      font-size: 0.95rem !important;
+      max-width: 90% !important;
+      line-height: 1.5 !important;
+    }
+
+    .food-items-scroll {
+      font-size: clamp(0.9rem, 3.5vw, 1.1rem) !important;
+      padding: 0.875rem 0 !important;
+    }
+  }
+
+  /* Small mobile devices */
+  @media (max-width: 360px) {
+    .benefit-title {
+      font-size: 1.1rem !important;
+    }
+    
+    .benefit-description {
+      font-size: 0.9rem !important;
+    }
+    
+    .food-items-scroll {
+      font-size: 0.85rem !important;
+    }
+  }
+}
