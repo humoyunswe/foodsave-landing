@@ -87,18 +87,14 @@
   white-space: nowrap;
   padding-right: 1rem;
   will-change: transform;
-  backface-visibility: hidden;
-  perspective: 1000px;
-  transform-style: preserve-3d;
-  transition: animation-duration 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none; /* Disable pointer events */
+  user-select: none; /* Prevent text selection */
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
 
 .animate-scroll.slow {
   animation-duration: 150s; /* Slower speed for green bar */
-}
-
-.animate-scroll:hover {
-  animation-duration: 200s; /* Even slower speed on hover */
+  pointer-events: none; /* Ensure pointer events are disabled for slow variant too */
 }
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 

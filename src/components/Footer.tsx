@@ -18,7 +18,15 @@ const Footer = () => {
         </h2>
         
         {/* Scrolling brands */}
-        <div className="mb-8 md:mb-12 py-4 overflow-hidden relative">
+        <div 
+          className="mb-8 md:mb-12 py-4 overflow-hidden relative"
+          style={{
+            pointerEvents: 'none',
+            userSelect: 'none',
+            WebkitUserSelect: 'none',
+            WebkitTouchCallout: 'none'
+          }}
+        >
           <div className="absolute inset-y-0 left-0 w-8 md:w-16 bg-gradient-to-r from-white to-transparent z-10" />
           <div className="absolute inset-y-0 right-0 w-8 md:w-16 bg-gradient-to-l from-white to-transparent z-10" />
           <div className="inline-block whitespace-nowrap">
