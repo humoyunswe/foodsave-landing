@@ -87,7 +87,7 @@ const BenefitsSection = () => {
       </div>
 
       {/* Bottom Categories - Full width */}
-      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-[#005251] text-white py-4 overflow-hidden">
+      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-[#005251] text-white py-4 overflow-hidden pointer-events-none">
         <div className="food-items-scroll inline-block whitespace-nowrap">
           <div className="animate-scroll slow text-2xl lg:text-4xl font-bold inline-block">
             {`${foodItems} • `.repeat(10)}

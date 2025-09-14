@@ -17,7 +17,7 @@ const Footer = () => {
           БОРЮЩИХСЯ С ПИЩЕВЫМИ ОТХОДАМИ ВМЕСТЕ С НАМИ
         </h2>
         
-        <div className="mb-12 py-4 overflow-hidden">
+        <div className="mb-12 py-4 overflow-hidden pointer-events-none">
           <div className="inline-block whitespace-nowrap">
             <div className="animate-scroll text-2xl lg:text-4xl font-bold text-red-500 inline-block">
               {`${partnerBrands.join(' • ')} • `.repeat(10)}
