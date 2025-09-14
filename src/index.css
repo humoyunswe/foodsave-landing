@@ -4,31 +4,75 @@
 
 @keyframes scroll {
   0% {
-    transform: translate3d(0, 0, 0);
+    transform: translateX(0);
   }
   100% {
-    transform: translate3d(calc(-100% - 1rem), 0, 0);
+    transform: translateX(-50%);
   }
 }
 
 .animate-scroll {
   display: inline-block;
-  animation: scroll 90s linear infinite;
+  animation: scroll 45s linear infinite;
   white-space: nowrap;
-  padding-right: 1rem;
   will-change: transform;
   backface-visibility: hidden;
   perspective: 1000px;
   transform-style: preserve-3d;
   transition: animation-duration 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 100%;
 }
 
 .animate-scroll.slow {
-  animation-duration: 150s; /* Slower speed for green bar */
+  animation-duration: 75s; /* Slower speed for green bar */
 }
 
 .animate-scroll:hover {
-  animation-duration: 200s; /* Even slower speed on hover */
+  animation-play-state: paused;
+}
+
+/* Reverse scroll animation */
+.animate-scroll-reverse {
+  display: inline-block;
+  animation: scroll 45s linear infinite reverse;
+  white-space: nowrap;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: animation-duration 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 100%;
+}
+
+.animate-scroll-reverse:hover {
+  animation-play-state: paused;
+}
+
+/* Food items scroll animation */
+.food-items-scroll {
+  display: inline-block;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+}
+
+.food-items-scroll .animate-scroll {
+  animation: scroll 45s linear infinite;
+  display: inline-block;
+  padding-right: 1rem;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  min-width: 100%;
+}
+
+.food-items-scroll .animate-scroll.slow {
+  animation-duration: 75s;
+}
+
+.food-items-scroll .animate-scroll:hover {
+  animation-play-state: paused;
 }
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 

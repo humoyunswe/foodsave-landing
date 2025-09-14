@@ -35,6 +35,15 @@ const Footer = () => {
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </div>
+
+        {/* Second Scrolling Partner Brands - Moving in Opposite Direction */}
+        <div className="mt-12 py-4 overflow-hidden pointer-events-none">
+          <div className="inline-block whitespace-nowrap">
+            <div className="animate-scroll-reverse text-2xl lg:text-4xl font-bold text-red-500 inline-block">
+              {`${partnerBrands.join(' • ')} • `.repeat(10)}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Curtain Reveal Footer Section */}
