@@ -18,7 +18,6 @@ const App = () => (
       <BrowserRouter>
         <div className="min-h-screen flex flex-col">
           <Navbar />
-          <div className="h-24"></div> {/* Add spacing for fixed navbar */}
           <main className="flex-1">
             <Routes>
               <Route path="/" element={<Index />} />
