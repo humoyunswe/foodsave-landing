@@ -19,7 +19,7 @@ const Footer = () => {
         
         <div className="mb-12 py-4 overflow-hidden pointer-events-none">
           <div className="inline-block whitespace-nowrap">
-            <div className="animate-scroll text-2xl lg:text-4xl font-bold text-red-500 inline-block">
+            <div className="animate-scroll text-2xl lg:text-4xl font-bold" style={{ color: 'rgb(255, 80, 60)' }}>
               {`${partnerBrands.join(' • ')} • `.repeat(10)}
             </div>
           </div>
@@ -39,7 +39,7 @@ const Footer = () => {
         {/* Second Scrolling Partner Brands - Moving in Opposite Direction */}
         <div className="mt-12 py-4 overflow-hidden pointer-events-none">
           <div className="inline-block whitespace-nowrap">
-            <div className="animate-scroll-reverse text-2xl lg:text-4xl font-bold text-red-500 inline-block">
+            <div className="animate-scroll-reverse text-2xl lg:text-4xl font-bold inline-block" style={{ color: 'rgb(255, 80, 60)' }}>
               {`${partnerBrands.join(' • ')} • `.repeat(10)}
             </div>
           </div>
