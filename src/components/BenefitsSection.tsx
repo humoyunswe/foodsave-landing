@@ -35,7 +35,7 @@ const BenefitsSection = () => {
           <h2 className="text-2xl lg:text-3xl font-bold text-primary mb-4">
             ЗАЧЕМ ИСПОЛЬЗОВАТЬ
           </h2>
-          <h3 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-red-400 to-pink-400 bg-clip-text text-transparent">
+          <h3 className="text-4xl lg:text-6xl font-bold" style={{ color: 'rgb(255, 133, 120)' }}>
             FoodSave
           </h3>
         </div>

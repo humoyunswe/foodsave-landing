@@ -59,7 +59,7 @@ const HowItWorksSection = () => {
           <h3 className="text-lg font-semibold text-white/80 mb-4">
             КАК ИСПОЛЬЗОВАТЬ ПРИЛОЖЕНИЕ
           </h3>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: 'rgb(252, 247, 98)' }}>
             {steps[currentStep].title}
           </h2>
           <p className="text-lg text-white/90 mb-8">
