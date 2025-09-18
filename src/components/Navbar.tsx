@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Menu, X } from 'lucide-react';
 import "./Navbar.mobile.css";
@@ -15,6 +15,8 @@ const Navbar = () => {
   const [isBizDialogOpen, setIsBizDialogOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const { openGooglePlay, scrollToId, scrollToTop } = useCTAs();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,78 +48,63 @@ const Navbar = () => {
         : 'text-gray-700 hover:text-primary hover:bg-gray-100'
     }`;
 
-  // Close menu when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsMenuOpen(false);
       }
     }
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Toggle body scroll when menu is open
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
+    if (isMenuOpen) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = '';
+    return () => { document.body.style.overflow = ''; };
   }, [isMenuOpen]);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const goHomeThen = (cb: () => void) => {
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(cb, 0);
+    } else cb();
   };
 
-  // Handlers map
-  const handleNavApp = () => { scrollToTop(); scrollToId('how-it-works'); };
-  const handleNavAbout = () => { scrollToTop(); scrollToId('mission'); };
-  const handleNavFoodwaste = () => { scrollToTop(); scrollToId('foodwaste'); };
-  const handleNavBusiness = () => setIsBizDialogOpen(true);
+  const handleNavApp = () => goHomeThen(() => { scrollToTop(); scrollToId('how-it-works'); });
+  const handleNavAbout = () => goHomeThen(() => { scrollToTop(); scrollToId('mission'); });
+  const handleNavFoodwasteSection = () => goHomeThen(() => { scrollToTop(); scrollToId('foodwaste'); });
+  const openBusinessDialog = () => setIsBizDialogOpen(true);
+  const goBusinessPage = () => { navigate('/business'); setTimeout(scrollToTop, 0); };
+  const goFoodWastePage = () => { navigate('/about-food-waste'); setTimeout(scrollToTop, 0); };
 
   return (
     <>
       <header className="w-full fixed top-0 left-0 z-50">
-        {/* Desktop Navigation */}
         <div className={`hidden md:block fixed top-0 left-0 w-full ${atTop ? 'bg-gradient-to-b from-[#005251] to-[#006260]' : 'bg-white shadow-md'}`}>
           <div className="w-full">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center h-16">
                 <div className="flex-shrink-0">
-                  <Link 
-                    to="/" 
-                    className={`text-2xl font-bold ${atTop ? 'text-white' : 'text-[#005251]'}`}
-                    onClick={scrollToTop}
-                  >
+                  <Link to="/" className={`text-2xl font-bold ${atTop ? 'text-white' : 'text-[#005251]'}`} onClick={scrollToTop}>
                     FoodSave
                   </Link>
                 </div>
                 
                 <nav className="hidden md:flex items-center space-x-2">
                   <button className={linkClasses('/app')} onClick={handleNavApp}>ПРИЛОЖЕНИЕ</button>
-                  <button className={linkClasses('/business')} onClick={handleNavBusiness}>ДЛЯ БИЗНЕСА</button>
+                  <button className={linkClasses('/business')} onClick={goBusinessPage}>ДЛЯ БИЗНЕСА</button>
                   <button className={linkClasses('/about')} onClick={handleNavAbout}>О НАС</button>
-                  <button className={linkClasses('/foodwaste')} onClick={handleNavFoodwaste}>О ФУДВЕЙСТЕ</button>
+                  <button className={linkClasses('/foodwaste')} onClick={goFoodWastePage}>О ФУДВЕЙСТЕ</button>
                 </nav>
 
                 <div className="hidden md:flex items-center space-x-4">
-                  <Button 
-                    variant={atTop ? 'outline' : 'default'}
-                    className={`${atTop ? 'border-white text-[#005251] bg-white hover:bg-white/90' : ''}`}
-                    onClick={() => { scrollToTop(); openGooglePlay(); }}
-                  >
+                  <Button variant={atTop ? 'outline' : 'default'} className={`${atTop ? 'border-white text-[#005251] bg-white hover:bg-white/90' : ''}`} onClick={() => { scrollToTop(); openGooglePlay(); }}>
                     СКАЧАТЬ ПРИЛОЖЕНИЕ
                   </Button>
-                  <Button 
-                    variant={atTop ? 'outline' : 'secondary'}
-                    className={`${atTop ? 'border-white text-[#005251] bg-white hover:bg-white/90' : ''}`}
-                    onClick={() => { scrollToTop(); handleNavBusiness(); }}
-                  >
+                  <Button variant={atTop ? 'outline' : 'secondary'} className={`${atTop ? 'border-white text-[#005251] bg-white hover:bg-white/90' : ''}`} onClick={openBusinessDialog}>
                     РЕГИСТРАЦИЯ БИЗНЕСА
                   </Button>
                 </div>
@@ -126,68 +113,33 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         <div className={`md:hidden fixed top-0 left-0 w-full navbar-mobile ${scrolled ? 'navbar-scrolled' : 'bg-gradient-to-b from-[#005251] to-[#006260]'}`}>
           <div className="navbar-container">
-            <Link 
-              to="/" 
-              className={`logo ${scrolled ? 'scrolled' : ''}`}
-              style={{ color: scrolled ? '#005251' : 'white' }}
-              onClick={scrollToTop}
-            >
+            <Link to="/" className={`logo ${scrolled ? 'scrolled' : ''}`} style={{ color: scrolled ? '#005251' : 'white' }} onClick={scrollToTop}>
               FoodSave
             </Link>
-            <button 
-              className={`menu-button ${scrolled ? 'scrolled' : ''}`}
-              onClick={toggleMenu}
-              aria-label="Меню"
-              aria-expanded={isMenuOpen}
-              aria-controls="mobile-menu"
-            >
+            <button className={`menu-button ${scrolled ? 'scrolled' : ''}`} onClick={toggleMenu} aria-label="Меню" aria-expanded={isMenuOpen} aria-controls="mobile-menu">
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
 
-          {/* Mobile Menu */}
-          <div 
-            ref={menuRef}
-            id="mobile-menu"
-            className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}
-          >
+          <div ref={menuRef} id="mobile-menu" className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
             <nav className="mobile-nav">
               <button onClick={() => { handleNavApp(); setIsMenuOpen(false); }}>ПРИЛОЖЕНИЕ</button>
-              <button onClick={() => { handleNavBusiness(); setIsMenuOpen(false); }}>ДЛЯ БИЗНЕСА</button>
+              <button onClick={() => { goBusinessPage(); setIsMenuOpen(false); }}>ДЛЯ БИЗНЕСА</button>
               <button onClick={() => { handleNavAbout(); setIsMenuOpen(false); }}>О НАС</button>
-              <button onClick={() => { handleNavFoodwaste(); setIsMenuOpen(false); }}>О ФУДВЕЙСТЕ</button>
-              
+              <button onClick={() => { goFoodWastePage(); setIsMenuOpen(false); }}>О ФУДВЕЙСТЕ</button>
               <div className="mobile-buttons">
-                <button 
-                  className="btn btn-primary"
-                  onClick={() => { scrollToTop(); openGooglePlay(); setIsMenuOpen(false); }}
-                >
-                  СКАЧАТЬ ПРИЛОЖЕНИЕ
-                </button>
-                <button 
-                  className="btn btn-secondary"
-                  onClick={() => { scrollToTop(); handleNavBusiness(); setIsMenuOpen(false); }}
-                >
-                  РЕГИСТРАЦИЯ БИЗНЕСА
-                </button>
+                <button className="btn btn-primary" onClick={() => { scrollToTop(); openGooglePlay(); setIsMenuOpen(false); }}>СКАЧАТЬ ПРИЛОЖЕНИЕ</button>
+                <button className="btn btn-secondary" onClick={() => { openBusinessDialog(); setIsMenuOpen(false); }}>РЕГИСТРАЦИЯ БИЗНЕСА</button>
               </div>
             </nav>
           </div>
-
-          {/* Backdrop */}
-          <div 
-            className={`backdrop ${isMenuOpen ? 'visible' : ''}`}
-            onClick={() => setIsMenuOpen(false)}
-          />
+          <div className={`backdrop ${isMenuOpen ? 'visible' : ''}`} onClick={() => setIsMenuOpen(false)} />
         </div>
       </header>
 
       <BusinessRegistrationDialog open={isBizDialogOpen} onOpenChange={setIsBizDialogOpen} />
-      
-      {/* Add padding to account for fixed navbar */}
       <div className="h-16 md:hidden" />
     </>
   );

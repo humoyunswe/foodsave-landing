@@ -18,6 +18,11 @@ import Terms from "./pages/Terms";
 import DSADisclosure from "./pages/DSADisclosure";
 import FoodwasteSources from "./pages/FoodwasteSources";
 import Status from "./pages/Status";
+import AboutFoodWaste from "./pages/AboutFoodWaste";
+import BusinessHub from "./pages/business/BusinessHub";
+import Marketplace from "./pages/business/Marketplace";
+import Platform from "./pages/business/Platform";
+import LookSmellTaste from "./pages/business/LookSmellTaste";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -38,6 +43,7 @@ const App = () => (
               <Route path="/press" element={<Press />} />
               <Route path="/support" element={<Support />} />
               <Route path="/mystore" element={<MyStore />} />
+              <Route path="/about-food-waste" element={<AboutFoodWaste />} />
               <Route path="/legal" element={<Legal />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/cookies" element={<Cookies />} />
@@ -45,6 +51,10 @@ const App = () => (
               <Route path="/dsa-disclosure" element={<DSADisclosure />} />
               <Route path="/foodwaste-sources" element={<FoodwasteSources />} />
               <Route path="/status" element={<Status />} />
+              <Route path="/business" element={<BusinessHub />} />
+              <Route path="/business/marketplace" element={<Marketplace />} />
+              <Route path="/business/platform" element={<Platform />} />
+              <Route path="/business/look-smell-taste" element={<LookSmellTaste />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

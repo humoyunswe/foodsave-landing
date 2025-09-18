@@ -123,7 +123,7 @@ const Footer = () => {
                   <Link to="/status" onClick={scrollToTop}>Статус</Link>
                 </div>
                 <div className="text-center text-sm text-white/60">
-                  © 2024 FoodSave Uzbekistan. Все права защищены.
+                  © 2025 FoodSave Uzbekistan. Все права защищены.
                 </div>
               </div>
             </div>
