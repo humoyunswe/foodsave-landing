@@ -5,6 +5,7 @@ export type CtaHandlers = {
   openBusinessRegistration: () => void;
   openExternal: (url: string) => void;
   scrollToId: (id: string) => void;
+  scrollToTop: () => void;
 };
 
 // Simple feature-detection for reduced motion
@@ -44,6 +45,14 @@ export function useCTAs(): CtaHandlers {
     }
   };
 
+  const scrollToTop = () => {
+    try {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+    } catch {
+      window.scrollTo(0, 0);
+    }
+  };
+
   return {
     openAppStore: () => openExternal(APP_STORE),
     openGooglePlay: () => openExternal(GOOGLE_PLAY),
@@ -51,5 +60,6 @@ export function useCTAs(): CtaHandlers {
     openBusinessRegistration: () => openExternal(BIZ_MAILTO),
     openExternal,
     scrollToId,
+    scrollToTop,
   };
 } 

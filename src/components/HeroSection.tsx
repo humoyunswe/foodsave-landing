@@ -4,7 +4,7 @@ import heroPhoneImage from "@/assets/hero-phone.jpg";
 import { useCTAs } from "@/hooks/use-ctas";
 
 const HeroSection = () => {
-  const { openGooglePlay, openBusinessRegistration } = useCTAs();
+  const { openGooglePlay, openBusinessRegistration, scrollToTop } = useCTAs();
   return (
     <section id="hero" className="relative w-full bg-gradient-to-br from-primary to-primary/90 text-white min-h-[100vh] flex items-center pt-24">
       <div className="max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -25,7 +25,7 @@ const HeroSection = () => {
               size="lg" 
               variant="secondary"
               className="text-primary bg-white hover:bg-white/90 font-semibold"
-              onClick={openGooglePlay}
+              onClick={() => { scrollToTop(); openGooglePlay(); }}
             >
               СКАЧАТЬ ПРИЛОЖЕНИЕ
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -34,7 +34,7 @@ const HeroSection = () => {
               size="lg" 
               variant="secondary"
               className="text-primary bg-white hover:bg-white/90 font-semibold"
-              onClick={openBusinessRegistration}
+              onClick={() => { scrollToTop(); openBusinessRegistration(); }}
             >
               ЗАРЕГИСТРИРОВАТЬ БИЗНЕС
               <ArrowRight className="ml-2 h-5 w-5" />

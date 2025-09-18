@@ -14,7 +14,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isBizDialogOpen, setIsBizDialogOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const { openGooglePlay, scrollToId } = useCTAs();
+  const { openGooglePlay, scrollToId, scrollToTop } = useCTAs();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,9 +75,9 @@ const Navbar = () => {
   };
 
   // Handlers map
-  const handleNavApp = () => scrollToId('how-it-works');
-  const handleNavAbout = () => scrollToId('mission');
-  const handleNavFoodwaste = () => scrollToId('foodwaste');
+  const handleNavApp = () => { scrollToTop(); scrollToId('how-it-works'); };
+  const handleNavAbout = () => { scrollToTop(); scrollToId('mission'); };
+  const handleNavFoodwaste = () => { scrollToTop(); scrollToId('foodwaste'); };
   const handleNavBusiness = () => setIsBizDialogOpen(true);
 
   return (
@@ -92,6 +92,7 @@ const Navbar = () => {
                   <Link 
                     to="/" 
                     className={`text-2xl font-bold ${atTop ? 'text-white' : 'text-[#005251]'}`}
+                    onClick={scrollToTop}
                   >
                     FoodSave
                   </Link>
@@ -108,14 +109,14 @@ const Navbar = () => {
                   <Button 
                     variant={atTop ? 'outline' : 'default'}
                     className={`${atTop ? 'border-white text-[#005251] bg-white hover:bg-white/90' : ''}`}
-                    onClick={openGooglePlay}
+                    onClick={() => { scrollToTop(); openGooglePlay(); }}
                   >
                     СКАЧАТЬ ПРИЛОЖЕНИЕ
                   </Button>
                   <Button 
                     variant={atTop ? 'outline' : 'secondary'}
                     className={`${atTop ? 'border-white text-[#005251] bg-white hover:bg-white/90' : ''}`}
-                    onClick={handleNavBusiness}
+                    onClick={() => { scrollToTop(); handleNavBusiness(); }}
                   >
                     РЕГИСТРАЦИЯ БИЗНЕСА
                   </Button>
@@ -132,6 +133,7 @@ const Navbar = () => {
               to="/" 
               className={`logo ${scrolled ? 'scrolled' : ''}`}
               style={{ color: scrolled ? '#005251' : 'white' }}
+              onClick={scrollToTop}
             >
               FoodSave
             </Link>
@@ -161,13 +163,13 @@ const Navbar = () => {
               <div className="mobile-buttons">
                 <button 
                   className="btn btn-primary"
-                  onClick={() => { openGooglePlay(); setIsMenuOpen(false); }}
+                  onClick={() => { scrollToTop(); openGooglePlay(); setIsMenuOpen(false); }}
                 >
                   СКАЧАТЬ ПРИЛОЖЕНИЕ
                 </button>
                 <button 
                   className="btn btn-secondary"
-                  onClick={() => { handleNavBusiness(); setIsMenuOpen(false); }}
+                  onClick={() => { scrollToTop(); handleNavBusiness(); setIsMenuOpen(false); }}
                 >
                   РЕГИСТРАЦИЯ БИЗНЕСА
                 </button>

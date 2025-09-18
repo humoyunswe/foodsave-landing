@@ -135,8 +135,8 @@ const HowItWorksSection = () => {
               Скачать приложение
             </Button>
             <Button 
-              variant="outline"
-              className="px-6 py-3 border border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
+              variant="ghost"
+              className="px-6 py-3 border border-white text-white font-semibold rounded-lg bg-transparent hover:bg-white/10 transition-colors"
               onClick={() => openExternal('https://example.com/learn-more')}
             >
               Узнать больше
