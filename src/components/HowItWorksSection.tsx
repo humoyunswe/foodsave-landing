@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
+import { useCTAs } from "@/hooks/use-ctas";
 
 // Define the step type
 type Step = {
@@ -11,6 +12,7 @@ type Step = {
 
 const HowItWorksSection = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  const { openGooglePlay, openExternal } = useCTAs();
 
   const steps: Step[] = [
     {
@@ -51,20 +53,32 @@ const HowItWorksSection = () => {
     setCurrentStep(stepIndex);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      nextStep();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      prevStep();
+    }
+  };
+
   return (
-    <section className="w-full bg-primary text-white py-16 px-4">
+    <section id="how-it-works" className="w-full bg-primary text-white py-16 px-4" onKeyDown={handleKeyDown}>
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Content */}
         <div>
           <h3 className="text-lg font-semibold text-white/80 mb-4">
             КАК ИСПОЛЬЗОВАТЬ ПРИЛОЖЕНИЕ
           </h3>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: 'rgb(252, 247, 98)' }}>
-            {steps[currentStep].title}
-          </h2>
-          <p className="text-lg text-white/90 mb-8">
-            {steps[currentStep].content}
-          </p>
+          <div aria-live="polite" role="status">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: 'rgb(252, 247, 98)' }}>
+              {steps[currentStep].title}
+            </h2>
+            <p className="text-lg text-white/90 mb-8">
+              {steps[currentStep].content}
+            </p>
+          </div>
           
           <div className="flex items-center space-x-4">
             <Button 
@@ -72,17 +86,23 @@ const HowItWorksSection = () => {
               className={`text-white hover:bg-white/10 p-2 ${currentStep === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
               onClick={prevStep}
               disabled={currentStep === 0}
+              aria-label="Предыдущий шаг"
             >
               <ArrowLeft className="h-6 w-6" />
             </Button>
             
-            <div className="flex space-x-2">
+            <div className="flex space-x-2" role="tablist" aria-label="Шаги">
               {steps.map((_, index) => (
                 <button 
                   key={index}
+                  type="button"
                   onClick={() => goToStep(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentStep ? 'bg-white scale-125' : 'bg-white/50'}`}
                   aria-label={`Перейти к шагу ${index + 1}`}
+                  aria-pressed={index === currentStep}
+                  aria-current={index === currentStep ? 'step' : undefined}
+                  role="tab"
+                  tabIndex={index === currentStep ? 0 : -1}
                 />
               ))}
             </div>
@@ -92,6 +112,7 @@ const HowItWorksSection = () => {
               className={`text-white hover:bg-white/10 p-2 ${currentStep === steps.length - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
               onClick={nextStep}
               disabled={currentStep === steps.length - 1}
+              aria-label="Следующий шаг"
             >
               <ArrowRight className="h-6 w-6" />
             </Button>
@@ -107,18 +128,19 @@ const HowItWorksSection = () => {
           <p className="text-white/90">{steps[currentStep].content}</p>
           
           <div className="mt-8 flex space-x-4">
-            <a 
-              href="#" 
+            <Button 
               className="px-6 py-3 bg-white text-primary font-semibold rounded-lg hover:bg-white/90 transition-colors"
+              onClick={openGooglePlay}
             >
               Скачать приложение
-            </a>
-            <a 
-              href="#" 
+            </Button>
+            <Button 
+              variant="outline"
               className="px-6 py-3 border border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
+              onClick={() => openExternal('https://example.com/learn-more')}
             >
               Узнать больше
-            </a>
+            </Button>
           </div>
         </div>
       </div>

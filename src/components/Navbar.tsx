@@ -5,12 +5,16 @@ import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Menu, X } from 'lucide-react';
 import "./Navbar.mobile.css";
+import { useCTAs } from "@/hooks/use-ctas";
+import BusinessRegistrationDialog from "@/components/BusinessRegistrationDialog";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [atTop, setAtTop] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isBizDialogOpen, setIsBizDialogOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const { openGooglePlay, scrollToId } = useCTAs();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +25,12 @@ const Navbar = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const openDialog = () => setIsBizDialogOpen(true);
+    window.addEventListener('open-biz-dialog', openDialog as EventListener);
+    return () => window.removeEventListener('open-biz-dialog', openDialog as EventListener);
   }, []);
 
   const navbarClasses = `fixed w-full z-50 transition-all duration-500 ease-in-out ${
@@ -64,6 +74,12 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Handlers map
+  const handleNavApp = () => scrollToId('how-it-works');
+  const handleNavAbout = () => scrollToId('mission');
+  const handleNavFoodwaste = () => scrollToId('foodwaste');
+  const handleNavBusiness = () => setIsBizDialogOpen(true);
+
   return (
     <>
       <header className="w-full fixed top-0 left-0 z-50">
@@ -82,30 +98,24 @@ const Navbar = () => {
                 </div>
                 
                 <nav className="hidden md:flex items-center space-x-2">
-                  <Link to="/app" className={linkClasses('/app')}>
-                    ПРИЛОЖЕНИЕ
-                  </Link>
-                  <Link to="/business" className={linkClasses('/business')}>
-                    ДЛЯ БИЗНЕСА
-                  </Link>
-                  <Link to="/about" className={linkClasses('/about')}>
-                    О НАС
-                  </Link>
-                  <Link to="/foodwaste" className={linkClasses('/foodwaste')}>
-                    О ФУДВЕЙСТЕ
-                  </Link>
+                  <button className={linkClasses('/app')} onClick={handleNavApp}>ПРИЛОЖЕНИЕ</button>
+                  <button className={linkClasses('/business')} onClick={handleNavBusiness}>ДЛЯ БИЗНЕСА</button>
+                  <button className={linkClasses('/about')} onClick={handleNavAbout}>О НАС</button>
+                  <button className={linkClasses('/foodwaste')} onClick={handleNavFoodwaste}>О ФУДВЕЙСТЕ</button>
                 </nav>
 
                 <div className="hidden md:flex items-center space-x-4">
                   <Button 
                     variant={atTop ? 'outline' : 'default'}
                     className={`${atTop ? 'border-white text-[#005251] bg-white hover:bg-white/90' : ''}`}
+                    onClick={openGooglePlay}
                   >
                     СКАЧАТЬ ПРИЛОЖЕНИЕ
                   </Button>
                   <Button 
                     variant={atTop ? 'outline' : 'secondary'}
                     className={`${atTop ? 'border-white text-[#005251] bg-white hover:bg-white/90' : ''}`}
+                    onClick={handleNavBusiness}
                   >
                     РЕГИСТРАЦИЯ БИЗНЕСА
                   </Button>
@@ -129,6 +139,8 @@ const Navbar = () => {
               className={`menu-button ${scrolled ? 'scrolled' : ''}`}
               onClick={toggleMenu}
               aria-label="Меню"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -137,29 +149,28 @@ const Navbar = () => {
           {/* Mobile Menu */}
           <div 
             ref={menuRef}
+            id="mobile-menu"
             className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}
           >
             <nav className="mobile-nav">
-              <Link to="/app" onClick={() => setIsMenuOpen(false)}>ПРИЛОЖЕНИЕ</Link>
-              <Link to="/business" onClick={() => setIsMenuOpen(false)}>ДЛЯ БИЗНЕСА</Link>
-              <Link to="/about" onClick={() => setIsMenuOpen(false)}>О НАС</Link>
-              <Link to="/foodwaste" onClick={() => setIsMenuOpen(false)}>О ФУДВЕЙСТЕ</Link>
+              <button onClick={() => { handleNavApp(); setIsMenuOpen(false); }}>ПРИЛОЖЕНИЕ</button>
+              <button onClick={() => { handleNavBusiness(); setIsMenuOpen(false); }}>ДЛЯ БИЗНЕСА</button>
+              <button onClick={() => { handleNavAbout(); setIsMenuOpen(false); }}>О НАС</button>
+              <button onClick={() => { handleNavFoodwaste(); setIsMenuOpen(false); }}>О ФУДВЕЙСТЕ</button>
               
               <div className="mobile-buttons">
-                <Link 
-                  to="/download" 
+                <button 
                   className="btn btn-primary"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={() => { openGooglePlay(); setIsMenuOpen(false); }}
                 >
                   СКАЧАТЬ ПРИЛОЖЕНИЕ
-                </Link>
-                <Link 
-                  to="/business/register" 
+                </button>
+                <button 
                   className="btn btn-secondary"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={() => { handleNavBusiness(); setIsMenuOpen(false); }}
                 >
                   РЕГИСТРАЦИЯ БИЗНЕСА
-                </Link>
+                </button>
               </div>
             </nav>
           </div>
@@ -171,6 +182,8 @@ const Navbar = () => {
           />
         </div>
       </header>
+
+      <BusinessRegistrationDialog open={isBizDialogOpen} onOpenChange={setIsBizDialogOpen} />
       
       {/* Add padding to account for fixed navbar */}
       <div className="h-16 md:hidden" />
