@@ -14,9 +14,14 @@ const Footer = () => {
     try {
       scrollToTop();
       window.dispatchEvent(new Event('open-biz-dialog'));
-    } catch {
-      // noop
-    }
+    } catch {}
+  };
+
+  const openSupportDialog = () => {
+    try {
+      scrollToTop();
+      window.dispatchEvent(new Event('open-support-dialog'));
+    } catch {}
   };
 
   return (
@@ -48,7 +53,7 @@ const Footer = () => {
           </Button>
         </div>
 
-        {/* Second Scrolling Partner Brands - Moving in Opposite Direction */}
+        {/* Second Scrolling Partner Brands */}
         <div className="mt-12 py-4 overflow-hidden pointer-events-none">
           <div className="inline-block whitespace-nowrap">
             <div className="animate-scroll-reverse text-2xl lg:text-4xl font-bold inline-block" style={{ color: 'rgb(255, 80, 60)' }}>
@@ -58,69 +63,32 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Curtain Reveal Footer Section */}
-      <div 
-        className="relative"
-        style={{ 
-          height: '100vh',
-          '--footer-height': '600px'
-        } as React.CSSProperties}
-      >
-        {/* Curtain Cover */}
+      {/* Sticky Footer */}
+      <div className="relative" style={{ height: '100vh', '--footer-height': '600px' } as React.CSSProperties}>
         <div className="h-[calc(100vh-600px)] bg-white relative z-10" />
-        
-        {/* Sticky Footer */}
-        <footer 
-          className="sticky bottom-0 text-white"
-          style={{ 
-            backgroundColor: '#007C71',
-            height: '600px',
-            marginTop: 'auto'
-          }}
-        >
+        <footer className="sticky bottom-0 text-white" style={{ backgroundColor: '#007C71', height: '600px', marginTop: 'auto' }}>
           <div className="py-16 px-4 h-full flex flex-col justify-center">
             <div className="max-w-7xl mx-auto w-full">
-              {/* Large FoodSave Text */}
               <div className="text-center mb-12">
-                <h2 className="text-6xl lg:text-9xl font-bold">
-                  FOOD SAVE
-                </h2>
+                <h2 className="text-6xl lg:text-9xl font-bold">FOOD SAVE</h2>
               </div>
 
-              {/* Footer Links */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
                 <div>
                   <Link to="/careers" className="font-semibold mb-4 inline-block hover:underline" onClick={scrollToTop}>КАРЬЕРА</Link>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-4">ПРЕССА</h4>
+                  <Link to="/press" className="font-semibold mb-4 inline-block hover:underline" onClick={scrollToTop}>ПРЕССА</Link>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-4">ПОДДЕРЖКА</h4>
+                  <Link to="/support" className="font-semibold mb-4 inline-block hover:underline" onClick={scrollToTop}>ПОДДЕРЖКА</Link>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-4">МОЙ АККАУНТ</h4>
+                  <Link to="/mystore" className="font-semibold mb-4 inline-block hover:underline" onClick={scrollToTop}>МОЙ МАГАЗИН</Link>
                 </div>
               </div>
 
-              {/* Logo and Social Links */}
-              <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-                <div className="flex items-center space-x-2 mb-4 md:mb-0">
-                  <img src={brandIcon} alt="FoodSave" className="h-12 w-12" />
-                  <span className="text-2xl font-bold ml-2">FoodSave</span>
-                </div>
-
-                <div className="flex space-x-6">
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white" onClick={scrollToTop}>LinkedIn</a>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white" onClick={scrollToTop}>Instagram</a>
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white" onClick={scrollToTop}>Facebook</a>
-                  <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white" onClick={scrollToTop}>TikTok</a>
-                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white" onClick={scrollToTop}>YouTube</a>
-                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white" onClick={scrollToTop}>Twitter</a>
-                </div>
-              </div>
-
-              {/* App Store Links */}
+              {/* App store buttons (restored) */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                 <Button className="bg-black text-white hover:bg-black/90" onClick={() => { scrollToTop(); openAppStore(); }}>
                   <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="currentColor">
@@ -130,7 +98,7 @@ const Footer = () => {
                 </Button>
                 <Button className="bg-black text-white hover:bg-black/90" onClick={() => { scrollToTop(); openGooglePlay(); }}>
                   <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3,20.5В3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
                   </svg>
                   Скачать в Google Play
                 </Button>
@@ -142,17 +110,17 @@ const Footer = () => {
                 </Button>
               </div>
 
-              {/* Copyright and Links */}
+              {/* Legal links */}
               <div className="border-t border-white/20 pt-8">
                 <div className="flex flex-wrap justify-center gap-6 text-sm text-white/60 mb-4">
-                  <a href="#" aria-disabled="true" className="pointer-events-none">Юридическая информация</a>
-                  <a href="#" aria-disabled="true" className="pointer-events-none">Политика конфиденциальности</a>
-                  <a href="#" aria-disabled="true" className="pointer-events-none">Политика использования cookie</a>
-                  <a href="#" aria-disabled="true" className="pointer-events-none">Условия использования</a>
-                  <a href="#" aria-disabled="true" className="pointer-events-none">Свяжитесь с нами</a>
-                  <a href="#" aria-disabled="true" className="pointer-events-none">Раскрытие информации DSA</a>
-                  <a href="#" aria-disabled="true" className="pointer-events-none">Источники пищевых отходов</a>
-                  <a href="#" aria-disabled="true" className="pointer-events-none">Статус</a>
+                  <Link to="/legal" onClick={scrollToTop}>Юридическая информация</Link>
+                  <Link to="/privacy" onClick={scrollToTop}>Политика конфиденциальности</Link>
+                  <Link to="/cookies" onClick={scrollToTop}>Политика использования cookie</Link>
+                  <Link to="/terms" onClick={scrollToTop}>Условия использования</Link>
+                  <button onClick={openSupportDialog} className="underline-offset-2 hover:underline">Свяжитесь с нами</button>
+                  <Link to="/dsa-disclosure" onClick={scrollToTop}>Раскрытие информации DSA</Link>
+                  <Link to="/foodwaste-sources" onClick={scrollToTop}>Источники пищевых отходов</Link>
+                  <Link to="/status" onClick={scrollToTop}>Статус</Link>
                 </div>
                 <div className="text-center text-sm text-white/60">
                   © 2024 FoodSave Uzbekistan. Все права защищены.

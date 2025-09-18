@@ -8,6 +8,16 @@ import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Careers from "./pages/Careers";
+import Press from "./pages/Press";
+import Support from "./pages/Support";
+import MyStore from "./pages/MyStore";
+import Legal from "./pages/Legal";
+import Privacy from "./pages/Privacy";
+import Cookies from "./pages/Cookies";
+import Terms from "./pages/Terms";
+import DSADisclosure from "./pages/DSADisclosure";
+import FoodwasteSources from "./pages/FoodwasteSources";
+import Status from "./pages/Status";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -25,6 +35,16 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/careers" element={<Careers />} />
+              <Route path="/press" element={<Press />} />
+              <Route path="/support" element={<Support />} />
+              <Route path="/mystore" element={<MyStore />} />
+              <Route path="/legal" element={<Legal />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/cookies" element={<Cookies />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/dsa-disclosure" element={<DSADisclosure />} />
+              <Route path="/foodwaste-sources" element={<FoodwasteSources />} />
+              <Route path="/status" element={<Status />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
