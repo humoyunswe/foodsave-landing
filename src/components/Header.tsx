@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import foodSaveLogo from "@/assets/foodsave-logo.png";
 
 const Header = () => {
@@ -43,10 +44,12 @@ const Header = () => {
             СКАЧАТЬ ПРИЛОЖЕНИЕ
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
-          <Button size="sm" className="items-center">
-            РЕГИСТРАЦИЯ БИЗНЕСА
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
+          <a href="https://foodsave.uz/accounts/register/" target="_blank" rel="noopener noreferrer">
+            <Button size="sm" className="items-center">
+              РЕГИСТРАЦИЯ БИЗНЕСА
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </a>
         </div>
       </div>
     </header>
