@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
-import foodSaveLogo from "@/assets/foodsave-logo.png";
+import { Link } from "react-router-dom";  
+import foodSaveLogo from "@/assets/logo-modified.png";
 
 const Header = () => {
   return (
@@ -40,10 +40,12 @@ const Header = () => {
 
         {/* CTA Buttons */}
         <div className="flex items-center space-x-4">
-          <Button variant="outline" size="sm" className="hidden sm:flex items-center">
-            СКАЧАТЬ ПРИЛОЖЕНИЕ
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
+          <a href="https://foodsave.uz/" target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="sm" className="hidden sm:flex items-center">
+              СКАЧАТЬ ПРИЛОЖЕНИЕ
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </a>
           <a href="https://foodsave.uz/accounts/register/" target="_blank" rel="noopener noreferrer">
             <Button size="sm" className="items-center">
               РЕГИСТРАЦИЯ БИЗНЕСА
