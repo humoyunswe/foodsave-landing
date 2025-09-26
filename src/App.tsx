@@ -19,10 +19,7 @@ import DSADisclosure from "./pages/DSADisclosure";
 import FoodwasteSources from "./pages/FoodwasteSources";
 import Status from "./pages/Status";
 import AboutFoodWaste from "./pages/AboutFoodWaste";
-import BusinessHub from "./pages/business/BusinessHub";
-import Marketplace from "./pages/business/Marketplace";
-import Platform from "./pages/business/Platform";
-import LookSmellTaste from "./pages/business/LookSmellTaste";
+import Business from "./pages/business/Business";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -36,7 +33,7 @@ const App = () => (
         <ScrollToTop />
         <div className="min-h-screen flex flex-col">
           <Navbar />
-          <main className="flex-1">
+          <main className="flex-1 pb-8">
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/careers" element={<Careers />} />
@@ -51,10 +48,7 @@ const App = () => (
               <Route path="/dsa-disclosure" element={<DSADisclosure />} />
               <Route path="/foodwaste-sources" element={<FoodwasteSources />} />
               <Route path="/status" element={<Status />} />
-              <Route path="/business" element={<BusinessHub />} />
-              <Route path="/business/marketplace" element={<Marketplace />} />
-              <Route path="/business/platform" element={<Platform />} />
-              <Route path="/business/look-smell-taste" element={<LookSmellTaste />} />
+              <Route path="/business" element={<Business />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

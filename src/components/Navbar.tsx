@@ -7,6 +7,7 @@ import { Menu, X } from 'lucide-react';
 import "./Navbar.mobile.css";
 import { useCTAs } from "@/hooks/use-ctas";
 import BusinessRegistrationDialog from "@/components/BusinessRegistrationDialog";
+import foodSaveLogo from "@/assets/foodsave-logo.ico";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -88,8 +89,9 @@ const Navbar = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center h-16">
                 <div className="flex-shrink-0">
-                  <Link to="/" className={`text-2xl font-bold ${atTop ? 'text-white' : 'text-[#005251]'}`} onClick={scrollToTop}>
-                    FoodSave
+                  <Link to="/" className={`flex items-center space-x-2 text-2xl font-bold ${atTop ? 'text-white' : 'text-[#005251]'}`} onClick={scrollToTop}>
+                    <img src={foodSaveLogo} alt="FoodSave" className="h-8 w-8" />
+                    <span>FoodSave</span>
                   </Link>
                 </div>
                 
@@ -115,8 +117,9 @@ const Navbar = () => {
 
         <div className={`md:hidden fixed top-0 left-0 w-full navbar-mobile ${scrolled ? 'navbar-scrolled' : 'bg-gradient-to-b from-[#005251] to-[#006260]'}`}>
           <div className="navbar-container">
-            <Link to="/" className={`logo ${scrolled ? 'scrolled' : ''}`} style={{ color: scrolled ? '#005251' : 'white' }} onClick={scrollToTop}>
-              FoodSave
+            <Link to="/" className={`logo ${scrolled ? 'scrolled' : ''} flex items-center space-x-2`} style={{ color: scrolled ? '#005251' : 'white' }} onClick={scrollToTop}>
+              <img src={foodSaveLogo} alt="FoodSave" className="h-6 w-6" />
+              <span>FoodSave</span>
             </Link>
             <button className={`menu-button ${scrolled ? 'scrolled' : ''}`} onClick={toggleMenu} aria-label="Меню" aria-expanded={isMenuOpen} aria-controls="mobile-menu">
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}

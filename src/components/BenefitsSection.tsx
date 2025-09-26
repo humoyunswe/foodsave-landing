@@ -1,5 +1,5 @@
 import { Heart, MapPin, Leaf, ChefHat } from "lucide-react";
-import foodBagImage from "@/assets/food-bag.png";
+import foodBagImage from "@/assets/food-bag.webp";
 import "./BenefitsSection.mobile.css";
 
 const BenefitsSection = () => {

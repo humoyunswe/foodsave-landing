@@ -27,10 +27,10 @@ function openInNewTab(url: string) {
 }
 
 export function useCTAs(): CtaHandlers {
-  // Store links
-  const APP_STORE = 'https://foodsave.uz/';
-  const GOOGLE_PLAY = 'https://foodsave.uz/';
-  const APP_GALLERY = 'https://foodsave.uz/';
+  // Mock store links (replace later)
+  const APP_STORE = 'https://apps.apple.com/app/id0000000000';
+  const GOOGLE_PLAY = 'https://play.google.com/store/apps/details?id=com.mock.foodsave';
+  const APP_GALLERY = 'https://appgallery.huawei.com/app/C000000000';
   const BIZ_MAILTO = 'mailto:partners@foodsave.uz?subject=%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81%D0%B0';
 
   const openExternal = (url: string) => openInNewTab(url);

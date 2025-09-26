@@ -33,10 +33,95 @@
   }
 }
 
-.card {
-  padding: 2em;
+/* Text Colors */
+h1, h2, h3, h4, h5, h6 {
+  color: #0d2e15; /* Very dark green for maximum contrast */
+  font-weight: 700;
 }
 
-.read-the-docs {
-  color: #888;
+/* Hero section text */
+.hero-title {
+  color: #0d2e15;
+  font-weight: 800;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  color: #1a5f2c;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+/* Buttons */
+.cta-button {
+  background-color: #1a5f2c;
+  color: white !important;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.cta-button:hover {
+  background-color: #0d2e15;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Business registration section */
+.business-registration {
+  color: #0d2e15;
+  font-weight: 600;
+}
+
+/* Card styles */
+.card {
+  padding: 2em;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 1px solid #e0e0e0;
+}
+
+/* Utility classes */
+.text-dark-green {
+  color: #0d2e15 !important;
+  font-weight: 600 !important;
+}
+
+.text-medium-green {
+  color: #1a5f2c !important;
+  font-weight: 500 !important;
+}
+
+.text-light-green {
+  color: #2e7d32 !important;
+}
+
+/* Text contrast improvements */
+p, div, span {
+  color: #1a1a1a;
+  line-height: 1.7;
+}
+
+/* Specific styles for the business registration button at the bottom */
+.business-register-button {
+  background-color: #1a5f2c;
+  color: white !important;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 1rem;
+  text-decoration: none;
+}
+
+.business-register-button:hover {
+  background-color: #0d2e15;
 }

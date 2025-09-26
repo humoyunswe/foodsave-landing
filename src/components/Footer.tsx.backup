@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+const brandIcon = "/icon1.webp";
 import { useCTAs } from "@/hooks/use-ctas";
 import { Link } from "react-router-dom";
-import foodSaveLogo from "@/assets/foodsave-logo.ico";
 
 const Footer = () => {
   const partnerBrands = [
-    "RIXUZ", "SUSHI MINOR", "MAX WAY", "BELLISSИМО", "ЧАЙХОНА №1", "КОФЕИН", "ТОМИ YUK"
+    "OSHI", "EVOS", "MAX WAY", "BELLISSИМО", "ЧАЙХОНА №1", "КОФЕИН", "ТОМИ YUK"
   ];
   const { openGooglePlay, openAppStore, openAppGallery, scrollToTop } = useCTAs();
 
@@ -27,14 +27,14 @@ const Footer = () => {
   return (
     <>
       {/* CTA Section */}
-      <div className="bg-white pt-12 pb-0 px-0 text-center overflow-hidden">
+      <div className="bg-white py-16 px-4 text-center overflow-hidden">
         <h2 className="text-2xl lg:text-3xl font-bold text-primary mb-8">
-          ПРИСОЕДИНЯЙТЕСЬ К БОЛЕЕ ЧЕМ 50 БИЗНЕСОВ,{" "}
+          ПРИСОЕДИНЯЙТЕСЬ К БОЛЕЕ ЧЕМ 5,000 БИЗНЕСОВ,{" "}
           <br className="hidden md:block" />
           БОРЮЩИХСЯ С ПИЩЕВЫМИ ОТХОДАМИ ВМЕСТЕ С НАМИ
         </h2>
         
-        <div className="mb-12 py-1 overflow-hidden pointer-events-none">
+        <div className="mb-12 py-4 overflow-hidden pointer-events-none">
           <div className="inline-block whitespace-nowrap">
             <div className="animate-scroll text-2xl lg:text-4xl font-bold" style={{ color: 'rgb(255, 80, 60)' }}>
               {`${partnerBrands.join(' • ')} • `.repeat(10)}
@@ -66,7 +66,7 @@ const Footer = () => {
       {/* Sticky Footer */}
       <div className="relative" style={{ height: '100vh', '--footer-height': '600px' } as React.CSSProperties}>
         <div className="h-[calc(100vh-600px)] bg-white relative z-10" />
-        <footer className="sticky bottom-0 text-white" style={{ backgroundColor: '#005251', height: '600px', marginTop: 'auto' }}>
+        <footer className="sticky bottom-0 text-white" style={{ backgroundColor: '#007C71', height: '600px', marginTop: 'auto' }}>
           <div className="py-16 px-4 h-full flex flex-col justify-center">
             <div className="max-w-7xl mx-auto w-full">
               <div className="text-center mb-12">
