@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import foodSaveLogo from "@/assets/foodsave-logo.ico";
+import foodSaveLogo from "@/assets/foodsave-logo.png";
 
 const Header = () => {
   return (
